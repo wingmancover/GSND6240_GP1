@@ -652,7 +652,7 @@ MonoBehaviour:
   model:
     currentValue: 30
     maxValue: 99
-    decayPerSecond: 6
+    decayPerSecond: 4
     clickIncrease: 5
 --- !u!1 &388411003
 GameObject:
@@ -1528,7 +1528,7 @@ RectTransform:
   m_GameObject: {fileID: 645434798}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.1273, y: 1.1273, z: 1.1273}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1262878634}
@@ -1538,7 +1538,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 401.11194, y: -111.5613}
+  m_AnchoredPosition: {x: 364, y: -156}
   m_SizeDelta: {x: 454.5161, y: 171.1226}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &645434801
@@ -1603,8 +1603,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 960, y: -519.72}
-  m_SizeDelta: {x: 1920, y: 1039.4}
+  m_AnchoredPosition: {x: 960, y: -720.17}
+  m_SizeDelta: {x: 1920, y: 1440.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &767210355
 MonoBehaviour:
@@ -1807,14 +1807,14 @@ RectTransform:
   m_GameObject: {fileID: 878085290}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 9.1934595, y: 9.1934595, z: 9.1934595}
+  m_LocalScale: {x: 10.948491, y: 10.948491, z: 10.948491}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 767210354}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 398, y: -393}
+  m_AnchoredPosition: {x: 462, y: -532}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &878085292
@@ -2610,8 +2610,8 @@ MonoBehaviour:
   model:
     currentValue: 30
     maxValue: 99
-    decayPerSecond: 6
-    clickIncrease: 5
+    decayPerSecond: 5
+    clickIncrease: 10
 --- !u!1 &1609334773
 GameObject:
   m_ObjectHideFlags: 0
@@ -3270,8 +3270,8 @@ MonoBehaviour:
   model:
     currentValue: 30
     maxValue: 99
-    decayPerSecond: 6
-    clickIncrease: 5
+    decayPerSecond: 3
+    clickIncrease: 3
 --- !u!1 &2081083879
 GameObject:
   m_ObjectHideFlags: 0
