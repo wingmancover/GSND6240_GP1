@@ -10,6 +10,7 @@ public class IdlePopupController : MonoBehaviour
     [SerializeField] private GameObject idlePopup;     // the full-screen panel
     [SerializeField] private GameObject gameOverPanel; // existing game over panel
     [SerializeField] private AudioClip popupSound;
+    [SerializeField] private AudioSource bgmSource;
 
     private float lastActivityTime;
     private bool isGameOver;
@@ -72,7 +73,12 @@ public class IdlePopupController : MonoBehaviour
         isGameOver = true;
 
         // Hide popup if game ends
-        if (idlePopup != null) idlePopup.SetActive(false);
+        if (idlePopup != null) 
+            idlePopup.SetActive(false);
+
+        // Hard stop BGM on game over
+        if (bgmSource != null)
+            bgmSource.Stop();
     }
 
     private void ShowPopup()
@@ -80,6 +86,10 @@ public class IdlePopupController : MonoBehaviour
         if (idlePopup == null) return;
 
         idlePopup.SetActive(true);
+
+        // Pause BGM
+        if (bgmSource != null && bgmSource.isPlaying)
+            bgmSource.Pause();
 
         if (popupSound != null)
         {
@@ -97,6 +107,10 @@ public class IdlePopupController : MonoBehaviour
     {
         if (idlePopup != null)
             idlePopup.SetActive(false);
+
+        // Resume BGM
+        if (bgmSource != null)
+            bgmSource.UnPause();
 
         lastActivityTime = Time.time;
     }

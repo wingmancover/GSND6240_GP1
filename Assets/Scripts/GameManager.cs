@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject gameOverPanel;
     public IdlePopupController idlePopup;
+    public AudioSource bgmSource;
 
     bool isGameOver = false;
 
@@ -31,8 +32,13 @@ public class GameManager : MonoBehaviour
     {
         isGameOver = true;
 
+        // hide popup + stop its logic
         if (idlePopup != null)
-            idlePopup.SetGameOver(); // hide popup + stop its logic
+            idlePopup.SetGameOver();
+
+        // stop BGM
+        if (bgmSource != null)
+            bgmSource.Stop();
 
         if (gameOverPanel != null)
             gameOverPanel.SetActive(true);
