@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public ProgressBarView nutrition;
 
     public GameObject gameOverPanel;
+    public IdlePopupController idlePopup;
 
     bool isGameOver = false;
 
@@ -29,6 +30,9 @@ public class GameManager : MonoBehaviour
     void TriggerGameOver()
     {
         isGameOver = true;
+
+        if (idlePopup != null)
+            idlePopup.SetGameOver(); // hide popup + stop its logic
 
         if (gameOverPanel != null)
             gameOverPanel.SetActive(true);
