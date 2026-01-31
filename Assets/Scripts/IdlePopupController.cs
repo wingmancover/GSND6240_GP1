@@ -14,6 +14,8 @@ public class IdlePopupController : MonoBehaviour
 
     private float lastActivityTime;
     private bool isGameOver;
+    private bool popupsSuppressed = false;
+    private bool enableAfterNextActivity = false;
 
     private AudioSource audioSource;
 
@@ -35,6 +37,8 @@ public class IdlePopupController : MonoBehaviour
     void Update()
     {
         if (isGameOver) return;
+
+        if (popupsSuppressed) return;
 
         // If popup is visible, allow to dismiss by clicking anywhere
         if (idlePopup != null && idlePopup.activeSelf)
@@ -58,6 +62,18 @@ public class IdlePopupController : MonoBehaviour
     public void RegisterActivity()
     {
         if (isGameOver) return;
+
+        // If waiting for the first click after effects,
+        // re-enable popups and restart the idle timer
+        if (enableAfterNextActivity)
+        {
+            popupsSuppressed = false;
+            enableAfterNextActivity = false;
+            lastActivityTime = Time.time;
+
+            if (idlePopup != null) idlePopup.SetActive(false);
+            return;
+        }
 
         lastActivityTime = Time.time;
 
@@ -114,4 +130,27 @@ public class IdlePopupController : MonoBehaviour
 
         lastActivityTime = Time.time;
     }
+
+    public void SuppressPopupsImmediately()
+    {
+        // Hide if currently visible and prevent showing again
+        // For Upgrade effect purpose
+        popupsSuppressed = true;
+        enableAfterNextActivity = false;
+
+        if (idlePopup != null)
+            idlePopup.SetActive(false);
+    }
+
+    public void EnablePopupsAfterNextActivity()
+    {
+        // Still suppressed, but once the player clicks a bar button,
+        // re-enable popups and restart the idle timer
+        popupsSuppressed = true;
+        enableAfterNextActivity = true;
+
+        if (idlePopup != null)
+            idlePopup.SetActive(false);
+    }
+
 }

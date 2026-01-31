@@ -15,8 +15,9 @@ public class UpgradeManager : MonoBehaviour
     [Header("One-shot")]
     public bool hasUpgraded = false;
 
-    [Header("Placeholder effects")]
+    [Header("Effects")]
     public GameObject upgradePlaceholderUI;   // turn on a badge/panel/effect later
+    public UpgradeBadEffects badEffects;
     public AudioClip upgradeSound;            // upgrade sound
 
     [Header("Optional hook for later")]
@@ -65,6 +66,9 @@ public class UpgradeManager : MonoBehaviour
             audioSource.clip = upgradeSound;
             audioSource.Play();
         }
+
+        if (badEffects != null)
+            badEffects.PlayUpgradeBadEffects();
 
         // Placeholder hook for later upgrades (swap assets, change UI, etc.)
         onUpgrade?.Invoke();

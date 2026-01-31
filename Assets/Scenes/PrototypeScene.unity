@@ -345,6 +345,65 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 57777484}
   m_CullTransparentMesh: 1
+--- !u!1 &76427525
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 76427527}
+  - component: {fileID: 76427526}
+  m_Layer: 0
+  m_Name: UpgradeEffects
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &76427526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 76427525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59e3d5811f9254a45a7e83c9c8452f8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashOverlay: {fileID: 1117195380}
+  flashColor: {r: 0.4037736, g: 0, b: 0, a: 0}
+  flashInTime: 0.08
+  flashOutTime: 0.6
+  flashMaxAlpha: 0.6
+  targetCamera: {fileID: 97064591}
+  shakeDuration: 1.5
+  shakeStrength: 1
+  shakeFrequency: 35
+  bgmSource: {fileID: 877253931}
+  bgmPauseSeconds: 3
+  cowUIImage: {fileID: 878085292}
+  cowDesaturateAmount: 0.6
+  cowDarkenAmount: 0.6
+  idlePopupController: {fileID: 1208492369}
+--- !u!4 &76427527
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 76427525}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 525.085, y: 311.31384, z: -0.18865809}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &87227740
 GameObject:
   m_ObjectHideFlags: 0
@@ -1708,9 +1767,9 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: bddb1a2e6e775ec41a97c4a50a211a56, type: 3}
+  m_Resource: {fileID: 8300000, guid: b999bb977bfbe7f47a661744902cf8fe, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.155
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -2146,6 +2205,7 @@ RectTransform:
   - {fileID: 767210354}
   - {fileID: 1856279802}
   - {fileID: 30794141}
+  - {fileID: 1117195379}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2217,6 +2277,81 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!1 &1117195378
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1117195379}
+  - component: {fileID: 1117195381}
+  - component: {fileID: 1117195380}
+  m_Layer: 5
+  m_Name: UpgradeFlashOverlay
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1117195379
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117195378}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1053485821}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1117195380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117195378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.20754719, g: 0.019971518, b: 0.019971518, a: 0}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1117195381
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117195378}
+  m_CullTransparentMesh: 1
 --- !u!1 &1149114410
 GameObject:
   m_ObjectHideFlags: 0
@@ -2890,7 +3025,8 @@ MonoBehaviour:
   threshold: 80
   hasUpgraded: 0
   upgradePlaceholderUI: {fileID: 0}
-  upgradeSound: {fileID: 8300000, guid: 560c749042404384e9c70408eea07684, type: 3}
+  badEffects: {fileID: 76427526}
+  upgradeSound: {fileID: 8300000, guid: 3f870b4b631831e49bd1d66c11bbbcb7, type: 3}
   onUpgrade:
     m_PersistentCalls:
       m_Calls: []
@@ -3109,6 +3245,7 @@ MonoBehaviour:
   gameOverPanel: {fileID: 1856279801}
   idlePopup: {fileID: 1208492369}
   bgmSource: {fileID: 877253931}
+  badEffects: {fileID: 0}
 --- !u!4 &1731456270
 Transform:
   m_ObjectHideFlags: 0
@@ -3762,12 +3899,13 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 97064592}
+  - {fileID: 570179734}
   - {fileID: 1155720680}
   - {fileID: 1053485821}
-  - {fileID: 570179734}
   - {fileID: 1754519509}
   - {fileID: 1731456270}
   - {fileID: 1208492370}
   - {fileID: 1621799920}
+  - {fileID: 76427527}
   - {fileID: 502351168}
   - {fileID: 877253932}

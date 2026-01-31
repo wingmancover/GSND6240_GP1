@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public GameObject gameOverPanel;
     public IdlePopupController idlePopup;
     public AudioSource bgmSource;
+    public UpgradeBadEffects badEffects;
 
     bool isGameOver = false;
 
@@ -35,6 +36,9 @@ public class GameManager : MonoBehaviour
         // hide popup + stop its logic
         if (idlePopup != null)
             idlePopup.SetGameOver();
+
+        if (badEffects != null)  // Stop upgrade effects
+            badEffects.OnGameOver();
 
         // stop BGM
         if (bgmSource != null)
