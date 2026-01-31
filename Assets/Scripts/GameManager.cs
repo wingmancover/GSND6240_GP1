@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,10 +12,17 @@ public class GameManager : MonoBehaviour
     public AudioSource bgmSource;
     public UpgradeBadEffects badEffects;
 
+    [Header("Game Over Audio")]
+    public AudioSource sfxSource;
+    public AudioSource gameOverSource;
+    public AudioClip gameOverClip;
+
     bool isGameOver = false;
 
     void Start()
     {
+        Time.timeScale = 1f;
+
         if (gameOverPanel != null)
             gameOverPanel.SetActive(false);
     }
@@ -37,17 +45,37 @@ public class GameManager : MonoBehaviour
         if (idlePopup != null)
             idlePopup.SetGameOver();
 
-        if (badEffects != null)  // Stop upgrade effects
+        // Stop upgrade effects, also stops coroutines
+        if (badEffects != null)
             badEffects.OnGameOver();
 
-        // stop BGM
+        // Stop BGM
         if (bgmSource != null)
             bgmSource.Stop();
 
+        // Stop other SFX
+        if (sfxSource != null)
+            sfxSource.Stop();
+
+        // Play game over sound
+        if (gameOverSource != null && gameOverClip != null)
+        {
+            gameOverSource.Stop();
+            gameOverSource.clip = gameOverClip;
+            gameOverSource.loop = false;
+            gameOverSource.Play();
+        }
+
+        // Show panel
         if (gameOverPanel != null)
             gameOverPanel.SetActive(true);
 
-        // freeze time, it's optional
+        // Freeze time, and UI still works
         Time.timeScale = 0f;
+    }
+    public void RestartGame()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
