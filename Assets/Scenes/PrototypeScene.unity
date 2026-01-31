@@ -381,8 +381,9 @@ MonoBehaviour:
   flashMaxAlpha: 0.6
   targetCamera: {fileID: 97064591}
   shakeDuration: 1.5
-  shakeStrength: 1
+  shakeStrength: 20
   shakeFrequency: 35
+  uiShakeTarget: {fileID: 767210354}
   bgmSource: {fileID: 877253931}
   bgmPauseSeconds: 3
   cowUIImage: {fileID: 878085292}

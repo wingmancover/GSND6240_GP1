@@ -17,6 +17,9 @@ public class UpgradeBadEffects : MonoBehaviour
     public float shakeStrength = 0.25f;
     public float shakeFrequency = 35f;
 
+    [Header("UI Shake")]
+    public RectTransform uiShakeTarget;
+
     [Header("BGM Pause")]
     public AudioSource bgmSource;
     public float bgmPauseSeconds = 3f;
@@ -31,6 +34,7 @@ public class UpgradeBadEffects : MonoBehaviour
 
 
     private Vector3 camOriginalPos;
+    private Vector2 uiOriginalAnchoredPos;
     private bool hasApplied = false;
 
     void Awake()
@@ -40,6 +44,9 @@ public class UpgradeBadEffects : MonoBehaviour
 
         if (targetCamera != null)
             camOriginalPos = targetCamera.transform.localPosition;
+
+        if (uiShakeTarget != null)
+            uiOriginalAnchoredPos = uiShakeTarget.anchoredPosition;
 
         if (flashOverlay != null)
             flashOverlay.color = new Color(flashColor.r, flashColor.g, flashColor.b, 0f);
@@ -97,30 +104,57 @@ public class UpgradeBadEffects : MonoBehaviour
 
     private IEnumerator ShakeRoutine()
     {
+        float t = 0f;
+
+        // UI shake
+        if (uiShakeTarget != null)
+        {
+            Vector2 startPos = uiOriginalAnchoredPos;
+
+            while (t < shakeDuration)
+            {
+                t += Time.unscaledDeltaTime; // unscaled so it still works if timescale changes
+                float normalized = t / shakeDuration;
+
+                float strength = Mathf.Lerp(shakeStrength, 0f, normalized);
+
+                // Random, more “violent” than Perlin
+                float x = Random.Range(-1f, 1f);
+                float y = Random.Range(-1f, 1f);
+
+                // shakeStrength is in "UI units" (pixels-ish), tune it
+                uiShakeTarget.anchoredPosition = startPos + new Vector2(x, y) * strength;
+
+                yield return null;
+            }
+
+            uiShakeTarget.anchoredPosition = startPos;
+            yield break;
+        }
+
+        // Camera shake fallback, only affects world objects
         if (targetCamera == null) yield break;
 
-        float t = 0f;
-        // Keep original local pos consistent even if something else moved it in between
-        Vector3 startPos = camOriginalPos;
+        Vector3 camStartPos = camOriginalPos;
 
         while (t < shakeDuration)
         {
-            t += Time.deltaTime;
+            t += Time.unscaledDeltaTime;
             float normalized = t / shakeDuration;
 
-            // decay: strong at start, weaker later
             float strength = Mathf.Lerp(shakeStrength, 0f, normalized);
 
-            // pseudo-random shake using Perlin (smooth) + frequency
-            float x = (Mathf.PerlinNoise(Time.time * shakeFrequency, 0f) - 0.5f) * 2f;
-            float y = (Mathf.PerlinNoise(0f, Time.time * shakeFrequency) - 0.5f) * 2f;
+            float x = Random.Range(-1f, 1f);
+            float y = Random.Range(-1f, 1f);
 
-            targetCamera.transform.localPosition = startPos + new Vector3(x, y, 0f) * strength;
+            targetCamera.transform.localPosition = camStartPos + new Vector3(x, y, 0f) * strength;
+
             yield return null;
         }
 
-        targetCamera.transform.localPosition = startPos;
+        targetCamera.transform.localPosition = camStartPos;
     }
+
 
     private IEnumerator PauseBgmRoutine()
     {
