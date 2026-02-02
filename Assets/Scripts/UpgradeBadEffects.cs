@@ -35,9 +35,11 @@ public class UpgradeBadEffects : MonoBehaviour
     public GameObject bgBefore;
     public GameObject bgAfter;
 
+    public bool revertBackgroundAfterTime = true;
+    public float bgAfterSeconds = 2.0f;
+
     [Header("Popup suppression")]
     public IdlePopupController idlePopupController;
-
 
     private Vector3 camOriginalPos;
     private Vector2 uiOriginalAnchoredPos;
@@ -232,14 +234,27 @@ public class UpgradeBadEffects : MonoBehaviour
             idlePopupController.EnablePopupsAfterNextActivity();
     }
 
+    private IEnumerator RevertBackgroundRoutine()
+    {
+        // Use realtime so it still works if Time.timeScale changes later
+        yield return new WaitForSecondsRealtime(bgAfterSeconds);
+
+        if (bgAfter != null) bgAfter.SetActive(false);
+        if (bgBefore != null) bgBefore.SetActive(true);
+    }
+
     private void ApplyUpgradeVisualSwap()
     {
-        // Swap cow sprite
+        // Cow Swap
         if (cowImageToSwap != null) cowImageToSwap.SetActive(false);
         if (cowAfterSprite != null) cowAfterSprite.SetActive(true);
 
-        // Swap backgrounds
+        // Background: swap to BGAfter first
         if (bgBefore != null) bgBefore.SetActive(false);
         if (bgAfter != null) bgAfter.SetActive(true);
+
+        // Revert after time
+        if (revertBackgroundAfterTime)
+            StartCoroutine(RevertBackgroundRoutine());
     }
 }

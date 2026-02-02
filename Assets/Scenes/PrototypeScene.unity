@@ -387,12 +387,14 @@ MonoBehaviour:
   bgmSource: {fileID: 877253931}
   bgmPauseSeconds: 3
   cowUIImage: {fileID: 0}
-  cowDesaturateAmount: 0.6
-  cowDarkenAmount: 0.6
+  cowDesaturateAmount: 0.5
+  cowDarkenAmount: 0.5
   cowImageToSwap: {fileID: 878085290}
   cowAfterSprite: {fileID: 984217907}
   bgBefore: {fileID: 178397644}
   bgAfter: {fileID: 1186089246}
+  revertBackgroundAfterTime: 1
+  bgAfterSeconds: 3
   idlePopupController: {fileID: 1208492369}
 --- !u!4 &76427527
 Transform:
@@ -3842,7 +3844,7 @@ MonoBehaviour:
   milk: {fileID: 349674843}
   labor: {fileID: 2030818374}
   nutrition: {fileID: 1494111498}
-  threshold: 32
+  threshold: 80
   hasUpgraded: 0
   upgradePlaceholderUI: {fileID: 0}
   badEffects: {fileID: 76427526}
