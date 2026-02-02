@@ -529,9 +529,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
+    x: 0.00018960238
     y: 0
-    width: 1
+    width: 0.9996208
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
@@ -3995,7 +3995,7 @@ MonoBehaviour:
   milk: {fileID: 349674843}
   labor: {fileID: 2030818374}
   nutrition: {fileID: 1494111498}
-  threshold: 32
+  threshold: 80
   hasUpgraded: 0
   upgradePlaceholderUI: {fileID: 0}
   badEffects: {fileID: 76427526}
