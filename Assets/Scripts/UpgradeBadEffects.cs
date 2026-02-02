@@ -29,6 +29,12 @@ public class UpgradeBadEffects : MonoBehaviour
     [Range(0f, 1f)] public float cowDesaturateAmount = 0.6f; // 0 = no change, 1 = gray
     [Range(0f, 1f)] public float cowDarkenAmount = 0.25f;    // 0 = no change, 1 = black
 
+    [Header("Upgrade Visual Swap")]
+    public GameObject cowImageToSwap;
+    public GameObject cowAfterSprite;
+    public GameObject bgBefore;
+    public GameObject bgAfter;
+
     [Header("Popup suppression")]
     public IdlePopupController idlePopupController;
 
@@ -50,6 +56,12 @@ public class UpgradeBadEffects : MonoBehaviour
 
         if (flashOverlay != null)
             flashOverlay.color = new Color(flashColor.r, flashColor.g, flashColor.b, 0f);
+
+        if (bgBefore != null) bgBefore.SetActive(true);
+        if (bgAfter != null) bgAfter.SetActive(false);
+
+        if (cowImageToSwap != null) cowImageToSwap.SetActive(true);
+        if (cowAfterSprite != null) cowAfterSprite.SetActive(false);
     }
 
     public void OnGameOver()
@@ -66,6 +78,8 @@ public class UpgradeBadEffects : MonoBehaviour
 
         if (hasApplied) return;
         hasApplied = true;
+
+        ApplyUpgradeVisualSwap();
 
         StartCoroutine(FlashRoutine());
         StartCoroutine(ShakeRoutine());
@@ -216,5 +230,16 @@ public class UpgradeBadEffects : MonoBehaviour
 
         if (idlePopupController != null)
             idlePopupController.EnablePopupsAfterNextActivity();
+    }
+
+    private void ApplyUpgradeVisualSwap()
+    {
+        // Swap cow sprite
+        if (cowImageToSwap != null) cowImageToSwap.SetActive(false);
+        if (cowAfterSprite != null) cowAfterSprite.SetActive(true);
+
+        // Swap backgrounds
+        if (bgBefore != null) bgBefore.SetActive(false);
+        if (bgAfter != null) bgAfter.SetActive(true);
     }
 }
